@@ -40,7 +40,7 @@ ALTER TABLE patient ADD COLUMN IF NOT EXISTS email VARCHAR(100) UNIQUE;
 ALTER TABLE treatment DROP COLUMN IF EXISTS medication;
 ```
 
-## 4. Результати
+## 5. Результати
 **Нова таблиця Medication:**
 <img width="391" height="387" alt="image" src="https://github.com/user-attachments/assets/bd67f368-4ee4-4c92-b78b-aeae20370adf" />
 **Доданий статус лікування:**
