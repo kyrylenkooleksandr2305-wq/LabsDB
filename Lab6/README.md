@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS medication (
 ALTER TABLE treatment ADD COLUMN IF NOT EXISTS medicationid INTEGER;
 
 ALTER TABLE treatment ADD CONSTRAINT fk_treatment_medication
-    FOREIGN KEY (medicationid) REFERENCES medication(medicationid);
+    FOREIGN KEY (medicationid) REFERENCES medication(medicationid);```
 
 ## 2.Додавання статусу лікування
 **Опис:** Додавання колонки статусу для відслідковування лікування.
