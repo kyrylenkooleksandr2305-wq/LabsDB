@@ -3,7 +3,8 @@
 ## 1. Створення нової міграції Medication
 **Опис:** Створено нову таблицю Medication для оптимізації баз даних для того, щоб не дублювалися ліки, змінювати в 1 місці все, а також економить місце.
 **Код SQL(```V5__create_medication_table.sql```):**
-```CREATE TABLE IF NOT EXISTS medication (
+```sql
+CREATE TABLE IF NOT EXISTS medication (
                                           medicationid SERIAL PRIMARY KEY,
                                           medicationname VARCHAR(100) NOT NULL UNIQUE,
                                           description TEXT
@@ -12,20 +13,27 @@
 ALTER TABLE treatment ADD COLUMN IF NOT EXISTS medicationid INTEGER;
 
 ALTER TABLE treatment ADD CONSTRAINT fk_treatment_medication
-    FOREIGN KEY (medicationid) REFERENCES medication(medicationid);```
+    FOREIGN KEY (medicationid) REFERENCES medication(medicationid);
+
 ## 2.Додавання статусу лікування
 **Опис:** Додавання колонки статусу для відслідковування лікування.
 **Код SQL(```V2__add_treatment_status.sql```):**
-```ALTER TABLE treatment ADD COLUMN IF NOT EXISTS status VARCHAR(20) DEFAULT 'Active';```
+```sql
+ALTER TABLE treatment ADD COLUMN IF NOT EXISTS status VARCHAR(20) DEFAULT 'Active';
+
 ## 3.Додавання колонок контактів
 **Опис:** Створено нові контакти пацієнтів для більшої інформованості
 **Код SQL(```V5__add_patient_contacts.sql```):**
-```ALTER TABLE patient ADD COLUMN IF NOT EXISTS phone VARCHAR(20);
-ALTER TABLE patient ADD COLUMN IF NOT EXISTS email VARCHAR(100) UNIQUE;```
+```sql
+ALTER TABLE patient ADD COLUMN IF NOT EXISTS phone VARCHAR(20);
+ALTER TABLE patient ADD COLUMN IF NOT EXISTS email VARCHAR(100) UNIQUE;
+
 ## 4.Видалення застарілого поля Medication
 **Опис:** Видалено непотрібне поле Medication натомість створено нову таблицю.
 **Код SQL(```V5_drop_old_medication_field.sql```):**
-```ALTER TABLE treatment DROP COLUMN IF EXISTS medication;```
+```sql
+ALTER TABLE treatment DROP COLUMN IF EXISTS medication;
+
 ## 4. Результати
 **Нова таблиця Medication:**
 <img width="391" height="387" alt="image" src="https://github.com/user-attachments/assets/bd67f368-4ee4-4c92-b78b-aeae20370adf" />
