@@ -2,6 +2,7 @@
 Цей файл документує всі дії, які були виконані при виконанні лабораторної роботи
 ## 1. Створення нової міграції Medication
 **Опис:** Створено нову таблицю Medication для оптимізації баз даних для того, щоб не дублювалися ліки, змінювати в 1 місці все, а також економить місце.
+
 **Код SQL(```V5__create_medication_table.sql```):**
 ```sql
 CREATE TABLE IF NOT EXISTS medication (
@@ -18,22 +19,26 @@ ALTER TABLE treatment ADD CONSTRAINT fk_treatment_medication
 
 ## 2.Додавання статусу лікування
 **Опис:** Додавання колонки статусу для відслідковування лікування.
+
 **Код SQL(```V2__add_treatment_status.sql```):**
 ```sql
-ALTER TABLE treatment ADD COLUMN IF NOT EXISTS status VARCHAR(20) DEFAULT 'Active';```
+ALTER TABLE treatment ADD COLUMN IF NOT EXISTS status VARCHAR(20) DEFAULT 'Active';
+```
 
 ## 3.Додавання колонок контактів
 **Опис:** Створено нові контакти пацієнтів для більшої інформованості
 **Код SQL(```V5__add_patient_contacts.sql```):**
 ```sql
 ALTER TABLE patient ADD COLUMN IF NOT EXISTS phone VARCHAR(20);
-ALTER TABLE patient ADD COLUMN IF NOT EXISTS email VARCHAR(100) UNIQUE;```
+ALTER TABLE patient ADD COLUMN IF NOT EXISTS email VARCHAR(100) UNIQUE;
+```
 
 ## 4.Видалення застарілого поля Medication
 **Опис:** Видалено непотрібне поле Medication натомість створено нову таблицю.
 **Код SQL(```V5_drop_old_medication_field.sql```):**
 ```sql
-ALTER TABLE treatment DROP COLUMN IF EXISTS medication;```
+ALTER TABLE treatment DROP COLUMN IF EXISTS medication;
+```
 
 ## 4. Результати
 **Нова таблиця Medication:**
